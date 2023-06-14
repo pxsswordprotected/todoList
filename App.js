@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { KeyboardAvoidingView, Platform, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Keyboard, KeyboardAvoidingView, Platform, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import Task from './components/Task';
 import React, { useState } from 'react';
 
@@ -8,6 +8,7 @@ const [task, setTask] = useState();
 const [taskItems, setTaskItems] = useState([]);
 
 const handleAddTask = () => {
+  Keyboard.dismiss();
   setTaskItems([...taskItems, task])
   setTask(null);
 }
@@ -21,8 +22,11 @@ const handleAddTask = () => {
         <Text style= {styles.sectionTitle}>Today's Tasks</Text>
         <View style = {styles.items}>   
           {/* Where the tasks will go */}
-          <Task text={'Task 1'} />
-          <Task text={'Task 2'} />
+          {
+            taskItems.map((item, index) => {
+             return <Task key={index} text={item} />
+            })
+          }
         </View>
       </View>
 
