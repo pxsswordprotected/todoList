@@ -10,7 +10,7 @@ const [taskItems, setTaskItems] = useState([]);
 const handleAddTask = () => {
   Keyboard.dismiss();
   setTaskItems([...taskItems, task])
-  setTask(null);
+  setTask('');
 }
 
 const completeTask = (index) => {
